@@ -48,32 +48,32 @@ func getBaremetalProvisioningConfig(dc dynamic.Interface, configName string) (Ba
 	provisioningInterface, found, err := unstructured.NestedString(provisioningSpec, "provisioningInterface")
 	if !found || err != nil {
 		glog.Errorf("provisioningInterface not found in Baremetal provisioning CR %s", configName)
-		return BaremetalProvisioningConfig{}, err
+		provisioningInterface = ""
 	}
 	provisioningIP, found, err := unstructured.NestedString(provisioningSpec, "provisioningIP")
 	if !found || err != nil {
 		glog.Errorf("provisioningIP not found in Baremetal provisioning CR %s", configName)
-		return BaremetalProvisioningConfig{}, err
+		provisioningIP = ""
 	}
 	provisioningNetworkCIDR, found, err := unstructured.NestedString(provisioningSpec, "provisioningNetworkCIDR")
 	if !found || err != nil {
 		glog.Errorf("provisioningNetworkCIDR not found in Baremetal provisioning CR %s", configName)
-		return BaremetalProvisioningConfig{}, err
+		provisioningNetworkCIDR = ""
 	}
 	provisioningDHCPExternal, found, err := unstructured.NestedBool(provisioningSpec, "provisioningDHCPExternal")
 	if !found || err != nil {
 		glog.Errorf("provisioningDHCPExternal not found in Baremetal provisioning CR %s", configName)
-		return BaremetalProvisioningConfig{}, err
+		provisioningDHCPExternal = false
 	}
 	provisioningDHCPRange, found, err := unstructured.NestedString(provisioningSpec, "provisioningDHCPRange")
 	if !found || err != nil {
 		glog.Errorf("provisioningDHCPRange not found in Baremetal provisioning CR %s", configName)
-		return BaremetalProvisioningConfig{}, err
+		provisioningDHCPRange = ""
 	}
 	provisioningOSDownloadURL, found, err := unstructured.NestedString(provisioningSpec, "provisioningOSDownloadURL")
 	if !found || err != nil {
 		glog.Errorf("provisioningOSDownloadURL not found in Baremetal provisioning CR %s", configName)
-		return BaremetalProvisioningConfig{}, err
+		provisioningOSDownloadURL = ""
 	}
 
 	return BaremetalProvisioningConfig{
